@@ -1,4 +1,5 @@
 import chess.ChessPiece;
+import chess.Color;
 
 import static java.lang.System.out;
 
@@ -26,8 +27,8 @@ public class UI {
 
   // https://stackoverflow.com/questions/2979383/java-clear-the-console
   public static void clearScreen() {
-    System.out.print("\033[H\033[2J");
-    System.out.flush();
+    out.print("\033[H\033[2J");
+    out.flush();
   }
 
 
@@ -47,12 +48,19 @@ public class UI {
   private static void printPiece(ChessPiece piece) {
     if (piece == null) {
       out.print('-');
-    } else {
-      out.print(piece);
+      out.print(" ");
+      return;
     }
+
+    if (piece.getColor() == Color.WHITE) {
+      out.print(ANSI_WHITE + piece + ANSI_RESET);
+      out.print(" ");
+      return;
+    }
+
+    out.print(ANSI_YELLOW + piece + ANSI_RESET);
     out.print(" ");
 
   }
-
 
 }
