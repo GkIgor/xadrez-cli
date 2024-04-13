@@ -1,5 +1,9 @@
 import chess.ChessPiece;
+import chess.ChessPosition;
 import chess.Color;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 import static java.lang.System.out;
 
@@ -25,6 +29,24 @@ public class UI {
   public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
   public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+  private static void printPiece(ChessPiece piece) {
+    if (piece == null) {
+      out.print('-');
+      out.print(" ");
+      return;
+    }
+
+    if (piece.getColor() == Color.WHITE) {
+      out.print(ANSI_WHITE + piece + ANSI_RESET);
+      out.print(" ");
+      return;
+    }
+
+    out.print(ANSI_YELLOW + piece + ANSI_RESET);
+    out.print(" ");
+
+  }
+
   // https://stackoverflow.com/questions/2979383/java-clear-the-console
   public static void clearScreen() {
     out.print("\033[H\033[2J");
@@ -45,21 +67,16 @@ public class UI {
 
   }
 
-  private static void printPiece(ChessPiece piece) {
-    if (piece == null) {
-      out.print('-');
-      out.print(" ");
-      return;
-    }
+  public static ChessPosition readChessPosition(Scanner sc) {
+    try {
+      String str = sc.nextLine();
+      char colum = str.charAt(0);
+      int row = Integer.parseInt(str.substring(1));
+      return new ChessPosition(colum, row);
 
-    if (piece.getColor() == Color.WHITE) {
-      out.print(ANSI_WHITE + piece + ANSI_RESET);
-      out.print(" ");
-      return;
+    } catch (RuntimeException err) {
+      throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to h8.");
     }
-
-    out.print(ANSI_YELLOW + piece + ANSI_RESET);
-    out.print(" ");
 
   }
 
