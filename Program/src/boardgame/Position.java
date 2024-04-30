@@ -25,7 +25,7 @@ public class Position {
     this.row = row;
   }
 
-  public void setValue(int row, int colum) {
+  public void setValues(int row, int colum) {
     this.row = row;
     this.colum = colum;
   }
