@@ -5,6 +5,7 @@ import boardgame.Piece;
 import boardgame.Position;
 import chess.exceptions.ChessException;
 import chess.pieces.King;
+import chess.pieces.Pawn;
 import chess.pieces.Rook;
 
 import java.util.ArrayList;
@@ -38,13 +39,30 @@ public class ChessMatch {
 
   private void initialSetup() {
     // WHITE Pieces
-    placeNewPiece('h', 7, new Rook(board, Color.WHITE));
-    placeNewPiece('d', 1, new Rook(board, Color.WHITE));
-    placeNewPiece('e', 1, new King(board, Color.WHITE));
+    placeNewPiece('a', 1, new Rook(board, Color.WHITE)); // Rook
+    placeNewPiece('e', 1, new King(board, Color.WHITE)); // King
+    placeNewPiece('h', 1, new Rook(board, Color.WHITE)); // Rook
+    placeNewPiece('a', 2, new Pawn(board, Color.WHITE)); // Pawn
+    placeNewPiece('b', 2, new Pawn(board, Color.WHITE)); // Pawn
+    placeNewPiece('c', 2, new Pawn(board, Color.WHITE)); // Pawn
+    placeNewPiece('d', 2, new Pawn(board, Color.WHITE)); // Pawn
+    placeNewPiece('e', 2, new Pawn(board, Color.WHITE)); // Pawn
+    placeNewPiece('f', 2, new Pawn(board, Color.WHITE)); // Pawn
+    placeNewPiece('g', 2, new Pawn(board, Color.WHITE)); // Pawn
+    placeNewPiece('h', 2, new Pawn(board, Color.WHITE)); // Pawn
 
     // BLACK pieces
-    placeNewPiece('b', 8, new Rook(board, Color.BLACK));
-    placeNewPiece('a', 8, new King(board, Color.BLACK));
+    placeNewPiece('a', 8, new Rook(board, Color.BLACK)); // Rook
+    placeNewPiece('e', 8, new King(board, Color.BLACK)); // King
+    placeNewPiece('h', 8, new Rook(board, Color.BLACK)); // Rook
+    placeNewPiece('a', 7, new Pawn(board, Color.BLACK)); // Pawn
+    placeNewPiece('b', 7, new Pawn(board, Color.BLACK)); // Pawn
+    placeNewPiece('c', 7, new Pawn(board, Color.BLACK)); // Pawn
+    placeNewPiece('d', 7, new Pawn(board, Color.BLACK)); // Pawn
+    placeNewPiece('e', 7, new Pawn(board, Color.BLACK)); // Pawn
+    placeNewPiece('f', 7, new Pawn(board, Color.BLACK)); // Pawn
+    placeNewPiece('g', 7, new Pawn(board, Color.BLACK)); // Pawn
+    placeNewPiece('h', 7, new Pawn(board, Color.BLACK)); // Pawn
   }
 
   private void validateSourcePosition(Position position) {
@@ -102,7 +120,6 @@ public class ChessMatch {
     for (Piece p : list) {
       if (p instanceof King) {
         return (ChessPiece) p;
-
       }
     }
     throw new IllegalStateException("There is no " + color + " king on the board");
