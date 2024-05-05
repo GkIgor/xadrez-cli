@@ -3,7 +3,9 @@ import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.Color;
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.System.out;
@@ -31,8 +33,7 @@ public class UI {
   public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
   private static void printPiece(ChessPiece piece, boolean background) {
-    if (background)
-      out.print(ANSI_BLUE_BACKGROUND);
+    if (background) out.print(ANSI_BLUE_BACKGROUND);
 
     if (piece == null) {
       out.print('-' + ANSI_RESET);
@@ -49,6 +50,24 @@ public class UI {
     out.print(ANSI_YELLOW + piece + ANSI_RESET);
     out.print(" ");
 
+  }
+
+  private static void printCapturedPieces(List<ChessPiece> captured) {
+    List<ChessPiece> white = captured.stream().filter(piece -> piece.getColor() == Color.WHITE).toList();
+    List<ChessPiece> black = captured.stream().filter(piece -> piece.getColor() == Color.BLACK).toList();
+
+    out.println("Captured pieces:");
+    out.print("White: ");
+    out.print(ANSI_WHITE);
+    out.println(Arrays.toString(white.toArray()));
+    out.print(ANSI_RESET);
+
+    // black
+    out.println("Captured pieces:");
+    out.print("Black: ");
+    out.print(ANSI_YELLOW);
+    out.println(Arrays.toString(black.toArray()));
+    out.print(ANSI_RESET);
   }
 
   // https://stackoverflow.com/questions/2979383/java-clear-the-console
@@ -97,11 +116,13 @@ public class UI {
 
   }
 
-  public static void printMatch(ChessMatch chessMatch) {
+  public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured) {
     printBoard(chessMatch.getPieces());
-    System.out.println();
-    System.out.println("Turn : " + chessMatch.getTurn());
-    System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
+    out.println();
+    printCapturedPieces(captured);
+    out.println();
+    out.println("Turn : " + chessMatch.getTurn());
+    out.println("Waiting player: " + chessMatch.getCurrentPlayer());
   }
 
 }
