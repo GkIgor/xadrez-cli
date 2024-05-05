@@ -29,9 +29,12 @@ public class UI {
   public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
   public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
-  private static void printPiece(ChessPiece piece) {
+  private static void printPiece(ChessPiece piece, boolean background) {
+    if (background)
+      out.print(ANSI_BLUE_BACKGROUND);
+
     if (piece == null) {
-      out.print('-');
+      out.print('-' + ANSI_RESET);
       out.print(" ");
       return;
     }
@@ -59,7 +62,20 @@ public class UI {
       out.print((8 - i) + " ");
 
       for (int j = 0; j < pieces.length; j++) {
-        printPiece(pieces[i][j]);
+        printPiece(pieces[i][j], false);
+      }
+      out.println();
+    }
+    out.println("  a b c d e f g h");
+
+  }
+
+  public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves) {
+    for (int i = 0; i < pieces.length; i++) {
+      out.print((8 - i) + " ");
+
+      for (int j = 0; j < pieces.length; j++) {
+        printPiece(pieces[i][j], possibleMoves[i][j]);
       }
       out.println();
     }

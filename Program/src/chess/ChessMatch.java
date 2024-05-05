@@ -76,11 +76,17 @@ public class ChessMatch {
     Position source = sourcePosition.toPosition();
     Position target = targetPosition.toPosition();
 
-    validateSourcePosition(source);
-    validateTargetPosition(source, target);
+    this.validateSourcePosition(source);
+    this.validateTargetPosition(source, target);
 
     Piece capturedPiece = makeMove(source, target);
     return (ChessPiece) capturedPiece;
+  }
+
+  public boolean[][] possibleMoves(ChessPosition sourcePosition) {
+    Position position = sourcePosition.toPosition();
+    this.validateSourcePosition(position);
+    return board.piece(position).possibleMoves();
   }
 
 }
