@@ -4,10 +4,7 @@ import boardgame.Board;
 import boardgame.Piece;
 import boardgame.Position;
 import chess.exceptions.ChessException;
-import chess.pieces.Bishop;
-import chess.pieces.King;
-import chess.pieces.Pawn;
-import chess.pieces.Rook;
+import chess.pieces.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,9 +38,11 @@ public class ChessMatch {
   private void initialSetup() {
     // WHITE Pieces
     placeNewPiece('a', 1, new Rook(board, Color.WHITE)); // Rook
+    placeNewPiece('b', 1, new Knight(board, Color.WHITE)); // Rook
     placeNewPiece('c', 1, new Bishop(board, Color.WHITE)); // Rook
     placeNewPiece('e', 1, new King(board, Color.WHITE)); // King
     placeNewPiece('f', 1, new Bishop(board, Color.WHITE)); // Rook
+    placeNewPiece('g', 1, new Knight(board, Color.WHITE)); // Rook
     placeNewPiece('h', 1, new Rook(board, Color.WHITE)); // Rook
     placeNewPiece('a', 2, new Pawn(board, Color.WHITE)); // Pawn
     placeNewPiece('b', 2, new Pawn(board, Color.WHITE)); // Pawn
@@ -56,10 +55,12 @@ public class ChessMatch {
 
     // BLACK pieces
     placeNewPiece('a', 8, new Rook(board, Color.BLACK)); // Rook
+    placeNewPiece('b', 8, new Knight(board, Color.BLACK)); // Rook
     placeNewPiece('c', 8, new Bishop(board, Color.BLACK)); // Rook
     placeNewPiece('e', 8, new King(board, Color.BLACK)); // King
     placeNewPiece('f', 8, new Bishop(board, Color.BLACK)); // Rook
     placeNewPiece('h', 8, new Rook(board, Color.BLACK)); // Rook
+    placeNewPiece('g', 8, new Knight(board, Color.BLACK)); // Rook
     placeNewPiece('a', 7, new Pawn(board, Color.BLACK)); // Pawn
     placeNewPiece('b', 7, new Pawn(board, Color.BLACK)); // Pawn
     placeNewPiece('c', 7, new Pawn(board, Color.BLACK)); // Pawn
